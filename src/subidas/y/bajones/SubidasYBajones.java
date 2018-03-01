@@ -21,16 +21,17 @@ public class SubidasYBajones {
         int avace_casillas= (int) (Math.random() * dado + 1);
         int jugadores=3;
         String [] jugador =new String [5];
+        int tablero1=1, tablero2=1;
+        String [][] tablero =new String [tablero1][tablero2];
+        limpiar limpia=new limpiar();
+        int subidas, bajones;
         for(int o=0;o<=jugadores;o++){
             jugador[o]=" ";
         }
         
         // TODO code application logic here
         while(true){
-            limpiar limpia=new limpiar();
-            int subidas, bajones;
-            int tablero1=1, tablero2=1;
-            String [][] tablero =new String [tablero1][tablero2];
+            
             
             System.out.println("[IPC1]Practica1_201701133");
             System.out.println("  ");
@@ -131,7 +132,36 @@ public class SubidasYBajones {
                                 }
                                 break;
                             case 2:
-                                
+                                if(dado==6){
+                                    for(int verificador_s_b=1;verificador_s_b<=1;verificador_s_b++){
+                                        System.out.println("Ingrese Numero de Subidas ");
+                                        subidas=lectura.nextInt();
+                                        System.out.println("Ingrese Numero de Bajones ");
+                                        bajones=lectura.nextInt();
+                                        if(subidas<5||subidas>10||bajones<5||bajones>10){
+                                            
+                                            limpia.limpiartodo();
+                                            System.out.println("Ingrese un numero que se encuentre en el rango de Dificultad");
+                                            verificador_s_b--;
+                                        }
+                                    }
+                                    if(dado==12){
+                                    for(int verificador_s_b=1;verificador_s_b<=1;verificador_s_b++){
+                                        System.out.println("Ingrese Numero de Subidas ");
+                                        subidas=lectura.nextInt();
+                                        System.out.println("Ingrese Numero de Bajones ");
+                                        bajones=lectura.nextInt();
+                                        if(subidas<20||subidas>40||bajones<20||bajones>40){
+                                            
+                                            limpia.limpiartodo();
+                                            System.out.println("Ingrese un numero que se encuentre en el rango de Dificultad");
+                                            verificador_s_b--;
+                                        }
+                                    }
+                                    }
+                                    
+                                    
+                                }
                                 break;
                             case 3:
                                 cont_submenu2++;
@@ -143,11 +173,11 @@ public class SubidasYBajones {
                                 limpia.limpiartodo();
                         }
                     }
-                    
-                    
+  
                     
                     break;
                 case 3:
+                    
                     break;
                 case 4:
                     System.exit(0);
