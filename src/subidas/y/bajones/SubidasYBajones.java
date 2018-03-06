@@ -61,8 +61,14 @@ public class SubidasYBajones {
             System.out.println("3. Inciar Juego");
             System.out.println("4. Salir");
             System.out.println("Nota: Porfavor Colocar Pantalla Completa");
+            int opcion_principal=0;
             Scanner lectura=new Scanner(System.in);
-            int opcion_principal=lectura.nextInt();
+            try{
+                opcion_principal=lectura.nextInt();
+            }
+            catch(Exception ex){
+                System.out.println("Por favor no ingresar caracteres");
+            }
             limpia.limpiartodo();
             switch(opcion_principal){
                 case 1:
@@ -71,7 +77,14 @@ public class SubidasYBajones {
                         System.out.println("1. Facil");
                         System.out.println("2. Dificil");
                         System.out.println("3. Regresar");
-                        int lectura_op1=lectura.nextInt();
+                        int lectura_op1=0;
+                        try{
+                            lectura_op1=lectura.nextInt();
+                        }
+                        catch(Exception ex){
+                            System.out.println("Por favor no ingresar caracteres");
+                        }
+                        
                         limpia.limpiartodo();
                         switch(lectura_op1){
                             case 1:
@@ -112,7 +125,13 @@ public class SubidasYBajones {
                         System.out.println("1. Jugadores");
                         System.out.println("2. Subidas y bajones");
                         System.out.println("3. Regresar");
-                        int lectura_op2=lectura.nextInt();
+                        int lectura_op2=0;
+                        try{
+                            lectura_op2=lectura.nextInt();
+                        }
+                        catch(Exception ex){
+                         System.out.println("Por favor no ingresar caracteres");
+                        }
                         limpia.limpiartodo();
                         switch(lectura_op2){
                             case 1:
@@ -317,6 +336,11 @@ public class SubidasYBajones {
                                 }
                             //jugador 1
                     primer_paso++;
+                    int csb=0;
+                    while (csb==0){
+                        
+                            csb++;
+                        
                     if(primer_paso>1){
                         
                         com_jugador=String.valueOf(jugador_1);
@@ -337,7 +361,25 @@ public class SubidasYBajones {
                             System.out.println("EL GANADOR ES: "+ primero);
                         }
                         //comprobamos el ganador
-                        
+                        //casilla especial +
+                        for(int vali=7; vali>=0;vali--){
+                            for(int vali_2=5; vali_2>=0;vali_2--){
+                            if(tablero_facil[vali][vali_2].equals(com_jugador+"+")){
+                                System.out.println("El jugador 1 cayo en una casilla especial de subida");
+                                csb--;
+                            }
+                        }
+                        }
+                        //fin de casilla especial +
+                        //casilla especial -
+                        for(int vali=7; vali>=0;vali--){
+                            for(int vali_2=5; vali_2>=0;vali_2--){
+                            if(tablero_facil[vali][vali_2].equals(com_jugador+"-")){
+                                System.out.println("El jugador 1 cayo en una casilla especial de bajada");
+                            }
+                        }
+                        }
+                        //fin de casilla especial -
                         if(9>=jugador_1){
                         com_jugador = "0"+String.valueOf(jugador_1);
                         if(ganador==0){
@@ -371,7 +413,8 @@ public class SubidasYBajones {
                         }
                         }
                     }
-                    }else{
+                    }
+                    else{
                         int primeros=(int)(Math.random() * dado )+ 1;
                         jugador_1=primeros+jugador_1;
                         if(ganador==0){
@@ -401,9 +444,12 @@ public class SubidasYBajones {
                         }
                     }
                     }
-                    
+                    }
                     //jugador 2
                     primer_paso_2++;
+                    int csb_2=0;
+                    while (csb_2==0){
+                        csb_2++;
                     if(primer_paso_2>1){
                         com_jugador=String.valueOf(jugador_2);
                         for(int vali=7; vali>=0;vali--){
@@ -429,6 +475,29 @@ public class SubidasYBajones {
                             limpia.limpiartodo();
                             System.out.println("EL GANADOR ES: "+ segundo);
                         }
+                         //casilla especial +
+                        for(int vali=7; vali>=0;vali--){
+                            for(int vali_2=5; vali_2>=0;vali_2--){
+                            if(tablero_dificil[vali][vali_2].equals(String.valueOf(com_jugador)+"+")){
+                                System.out.println("El jugador 2 cayo en una casilla especial de subida");
+                                csb--;
+                            }
+                        }
+                        }
+                        //fin de casilla especial +
+                        
+                       
+                        
+                        
+                        //casilla especial -
+                        for(int vali=7; vali>=0;vali--){
+                            for(int vali_2=5; vali_2>=0;vali_2--){
+                            if(tablero_facil[vali][vali_2].equals(String.valueOf(com_jugador)+"-")){
+                                System.out.println(" El jugador 2 cayo en una casilla especial de bajada");
+                            }
+                        }
+                        }
+                        //fin de casilla especial -
                         if(9>=jugador_2){
                         com_jugador = "0"+String.valueOf(jugador_2);
                         
@@ -483,6 +552,7 @@ public class SubidasYBajones {
                                 }
                             }
                         }
+                    }
                     }
                     }
                             
@@ -658,6 +728,7 @@ public class SubidasYBajones {
                     int casilla_baja=0;
                     int casilla_bajaj=0;
                     while (casilla_subida==0){
+                        
                         casilla_subida++;
                     if(casilla_baja==1){
                         casilla_bajaj--;
