@@ -337,10 +337,11 @@ public class SubidasYBajones {
                             System.out.println("EL GANADOR ES: "+ primero);
                         }
                         //comprobamos el ganador
+                        
                         if(9>=jugador_1){
                         com_jugador = "0"+String.valueOf(jugador_1);
                         if(ganador==0){
-                            System.out.println("Valor del Jugador 1: "+primeros);
+                            System.out.println("Valor del Dado del Jugador 1: "+primeros);
                         }
                         for(int vali=7; vali>=0;vali--){
                             for(int vali_2=5; vali_2>=0;vali_2--){
@@ -354,7 +355,7 @@ public class SubidasYBajones {
                         }
                     }else{
                         if(ganador==0){
-                            System.out.println("Valor del Jugador 1: "+primeros);
+                            System.out.println("Valor del Dado del  Jugador 1: "+primeros);
                         }
                         com_jugador=String.valueOf(jugador_1);
                         
@@ -374,7 +375,7 @@ public class SubidasYBajones {
                         int primeros=(int)(Math.random() * dado )+ 1;
                         jugador_1=primeros+jugador_1;
                         if(ganador==0){
-                            System.out.println("Valor del Jugador 1: "+primeros);
+                            System.out.println("Valor del Dado del Jugador 1: "+primeros);
                         }
                     if(9>=jugador_1){
                         com_jugador = "0"+String.valueOf(jugador_1);
@@ -420,7 +421,7 @@ public class SubidasYBajones {
                         int primeros=(int)(Math.random() * dado) + 1;
                         jugador_2=primeros+jugador_2;
                         if(ganador==0){
-                            System.out.println("Valor del Jugador 2: "+primeros);
+                            System.out.println("Valor del Dado del Jugador 2: "+primeros);
                         }
                         
                         if(jugador_2>=48 && ganador==0){
@@ -457,7 +458,7 @@ public class SubidasYBajones {
                         int primeros=(int)(Math.random() * dado )+ 1;
                         jugador_2=primeros+jugador_2;
                         if(ganador==0){
-                            System.out.println("Valor del Jugador 2: "+primeros);
+                            System.out.println("Valor del Dado del Jugador 2: "+primeros);
                         }
                         
                         if(9>=jugador_2){
@@ -648,9 +649,19 @@ public class SubidasYBajones {
                                     jugador_2=0;
                                     }
                                 }
+                            
+                            
                             //jugador 1
+                            
                     primer_paso++;
-                    if(primer_paso>1){
+                    int casilla_subida=0;
+                    int casilla_baja=0;
+                    int casilla_bajaj=0;
+                    while (casilla_subida==0){
+                        casilla_subida++;
+                    if(casilla_baja==1){
+                        casilla_bajaj--;
+                        casilla_baja--;
                         
                         com_jugador=String.valueOf(jugador_1);
                         for(int vali=9; vali>=0;vali--){
@@ -661,20 +672,14 @@ public class SubidasYBajones {
                             }
                             }
                         }
+                        
                         //arreglamos la matriz como en el inicio
                         int primeros=(int)(Math.random() * dado) + 1;
-                        jugador_1=primeros+jugador_1;
-                        if(jugador_1>=200){
-                            ganador++;
-                            limpia.limpiartodo();
-                            System.out.println("EL GANADOR ES: "+ primero);
-                        }
-                        //comprobamos el ganador
+                        jugador_1=primeros-jugador_1;
+                                                
+                        
                         if(9>=jugador_1){
                         com_jugador = "0"+String.valueOf(jugador_1);
-                        if(ganador==0){
-                            System.out.println("Valor del Jugador 1: "+primeros);
-                        }
                         for(int vali=9; vali>=0;vali--){
                             for(int vali_2=19; vali_2>=0;vali_2--){
                             if(tablero_dificil[vali][vali_2].equals(com_jugador)){
@@ -687,7 +692,7 @@ public class SubidasYBajones {
                         }
                     }else{
                         if(ganador==0){
-                            System.out.println("Valor del Jugador 1: "+primeros);
+                            System.out.println("Valor de Bajada del Jugador 1: "+primeros);
                         }
                         com_jugador=String.valueOf(jugador_1);
                         
@@ -703,11 +708,99 @@ public class SubidasYBajones {
                         }
                         }
                     }
+                    }
+                    
+                    if(primer_paso>1){
+                        if(casilla_bajaj==0){
+                            com_jugador=String.valueOf(jugador_1);
+                        for(int vali=9; vali>=0;vali--){
+                            for(int vali_2=19; vali_2>=0;vali_2--){
+                                
+                                if(tablero_dificil[vali][vali_2].equals(primero)){
+                                    tablero_dificil[vali][vali_2]=com_jugador_1;
+                            }
+                            }
+                        }
+                        
+                        //arreglamos la matriz como en el inicio
+                        int primeros=(int)(Math.random() * dado) + 1;
+                        jugador_1=primeros+jugador_1;
+                        if(jugador_1>=200){
+                            ganador++;
+                            limpia.limpiartodo();
+                            System.out.println("EL GANADOR ES: "+ primero);
+                        }
+                        //comprobamos el ganador
+                        //casilla especial +
+                        for(int vali=9; vali>=0;vali--){
+                            for(int vali_2=19; vali_2>=0;vali_2--){
+                            if(tablero_dificil[vali][vali_2].equals(com_jugador+"+")){
+                                System.out.println("El jugador 1 cayo en una casilla especial de subida");
+                                casilla_subida--;
+                            }
+                        }
+                        }
+                        //fin de casilla especial +
+                        //casilla especial -
+                        for(int vali=9; vali>=0;vali--){
+                            for(int vali_2=19; vali_2>=0;vali_2--){
+                            if(tablero_dificil[vali][vali_2].equals(com_jugador+"-")){
+                                System.out.println("El jugador 1 cayo en una casilla especial de bajada");
+                                casilla_baja++;
+                                casilla_subida--;
+                                casilla_bajaj++;
+                                casilla_bajaj++;
+                            }
+                        }
+                        }
+                        //fin de casilla especial -
+                       
+                        
+                        
+                        
+                        if(9>=jugador_1){
+                        com_jugador = "0"+String.valueOf(jugador_1);
+                        if(ganador==0){
+                            System.out.println("Valor del Dado Jugador 1: "+primeros);
+                        }
+                        for(int vali=9; vali>=0;vali--){
+                            for(int vali_2=19; vali_2>=0;vali_2--){
+                            if(tablero_dificil[vali][vali_2].equals(com_jugador)){
+                                
+                                com_jugador_1=tablero_dificil[vali][vali_2];
+                                tablero_dificil[vali][vali_2]=primero;
+                                
+                            }
+                        }
+                        }
+                    }else{
+                        if(ganador==0){
+                            System.out.println("Valor del Dado delJugador 1: "+primeros);
+                        }
+                        com_jugador=String.valueOf(jugador_1);
+                        
+                        for(int vali=9; vali>=0;vali--){
+                            for(int vali_2=19; vali_2>=0;vali_2--){
+                                //le comparas el valor del dado con la matriz y donde sean iguales para lo siguiente
+                            if(tablero_dificil[vali][vali_2].equals(com_jugador)){
+                                //com_jugador es tu constante guardas es valor de la matriz durante 1 turno
+                                com_jugador_1=tablero_dificil[vali][vali_2];
+                                //aqui le das el caracter a la matriz
+                                tablero_dificil[vali][vali_2]=primero;
+                            }
+                        }
+                        }
+                    }
+                        }
+                        if (casilla_bajaj==1){
+                            casilla_bajaj--;
+                        }
+                        
                     }else{
                         int primeros=(int)(Math.random() * dado) + 1;
                         jugador_1=primeros+jugador_1;
                         if(ganador==0){
-                            System.out.println("Valor del Jugador 1: "+primeros);
+                            System.out.println("Valor del Dado del Jugador 1: "+primeros);
                         }
                         if(9>=jugador_1){
                         com_jugador = "0"+String.valueOf(jugador_1);
@@ -733,11 +826,21 @@ public class SubidasYBajones {
                         }
                     }
                     }
+                    }
+                    
                     
                     //jugador 2
-                    primer_paso_2++;
-                    if(primer_paso_2>1){
-                        com_jugador=String.valueOf(jugador_2);
+                    int casilla_subida_2=0;
+                    int casilla_baja_2=0;
+                    int casilla_bajaj_2=0;
+                    while (casilla_subida_2==0){
+                        casilla_subida_2++;
+                       
+                        if(casilla_baja_2==1){
+                            casilla_baja_2--;
+                            casilla_bajaj--;
+                            //empieza si cae en casilla baja jugador 2
+                            com_jugador=String.valueOf(jugador_2);
                         for(int vali=9; vali>=0;vali--){
                             for(int vali_2=19; vali_2>=0;vali_2--){
                                 
@@ -753,14 +856,10 @@ public class SubidasYBajones {
                         int primeros=(int)(Math.random() * dado)+ 1;
                         jugador_2=primeros+jugador_2;
                         if(ganador==0){
-                            System.out.println("Valor del Jugador 2: "+primeros);
+                            System.out.println("Valor del Bajada del Jugador 2: "+primeros);
                         }
                         
-                        if(jugador_2>=200 && ganador==0){
-                            ganador++;
-                            limpia.limpiartodo();
-                            System.out.println("EL GANADOR ES: "+ segundo);
-                        }
+                        
                         if(9>=jugador_2){
                         com_jugador = "0"+String.valueOf(jugador_2);
                         
@@ -785,12 +884,107 @@ public class SubidasYBajones {
                         }
                         }
                     }
+                            
+                            
+                            
+                        }
+                        //termina si cae en casilla baja jugador 2
+                    
+                        
+                        
+                        
+                        
+                        
+                    primer_paso_2++;
+                    if(primer_paso_2>1){
+                        if(casilla_bajaj_2==0){
+                            com_jugador=String.valueOf(jugador_2);
+                        for(int vali=9; vali>=0;vali--){
+                            for(int vali_2=19; vali_2>=0;vali_2--){
+                                
+                                if(tablero_dificil[vali][vali_2].equals(segundo)){
+                                    tablero_dificil[vali][vali_2]=com_jugador_2;
+                            }
+                            }
+                        }
+                        
+                                
+                        
+                        
+                        int primeros=(int)(Math.random() * dado)+ 1;
+                        jugador_2=primeros+jugador_2;
+                        if(ganador==0){
+                            System.out.println("Valor del Dado del Jugador 2: "+primeros);
+                        }
+                        
+                        if(jugador_2>=200 && ganador==0){
+                            ganador++;
+                            limpia.limpiartodo();
+                            System.out.println("EL GANADOR ES: "+ segundo);
+                        }
+                        //comprobamos el ganador
+                        //casilla especial +
+                        for(int vali=9; vali>=0;vali--){
+                            for(int vali_2=19; vali_2>=0;vali_2--){
+                            if(tablero_dificil[vali][vali_2].equals(String.valueOf(com_jugador)+"+")){
+                                System.out.println("El jugador 2 cayo en una casilla especial de subida");
+                                casilla_subida_2--;
+                            }
+                        }
+                        }
+                        //fin de casilla especial +
+                        
+                       
+                        
+                        
+                        //casilla especial -
+                        for(int vali=9; vali>=0;vali--){
+                            for(int vali_2=19; vali_2>=0;vali_2--){
+                            if(tablero_dificil[vali][vali_2].equals(String.valueOf(com_jugador)+"-")){
+                                System.out.println(" El jugador 2 cayo en una casilla especial de bajada");
+                                casilla_subida_2--;
+                                casilla_baja_2++;
+                                casilla_bajaj_2=casilla_bajaj_2+2;
+                            }
+                        }
+                        }
+                        //fin de casilla especial -
+                        
+                        if(9>=jugador_2){
+                        com_jugador = "0"+String.valueOf(jugador_2);
+                        
+                        for(int vali=9; vali>=0;vali--){
+                            for(int vali_2=19; vali_2>=0;vali_2--){
+                            if(tablero_dificil[vali][vali_2].equals(com_jugador)){
+                                
+                                com_jugador_2=tablero_dificil[vali][vali_2];
+                                tablero_dificil[vali][vali_2]=segundo;
+                                
+                            }
+                        }
+                        }
+                    }else{
+                        com_jugador=String.valueOf(jugador_2);
+                        for(int vali=9; vali>=0;vali--){
+                            for(int vali_2=19; vali_2>=0;vali_2--){
+                            if(tablero_dificil[vali][vali_2].equals(com_jugador)){
+                                com_jugador_2=tablero_dificil[vali][vali_2];
+                                tablero_dificil[vali][vali_2]=segundo;
+                            }
+                        }
+                        }
+                    }
+                        }
+                        if(casilla_bajaj_2==1){
+                            casilla_bajaj_2--;
+                        }
+                        
                     }else{
                         
                         int primeros=(int)(Math.random() * dado) + 1;
                         jugador_2=primeros+jugador_2;
                         if(ganador==0){
-                            System.out.println("Valor del Jugador 2: "+primeros);
+                            System.out.println("Valor del Dado del Jugador 2: "+primeros);
                         }
                         
                         if(9>=jugador_2){
@@ -817,7 +1011,8 @@ public class SubidasYBajones {
                         }
                     }
                     }
-                            
+                    }
+                        
                     
                     
                         if(ganador==0){
